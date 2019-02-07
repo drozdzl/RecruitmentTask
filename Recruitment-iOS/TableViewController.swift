@@ -18,6 +18,10 @@ class TableViewController: UITableViewController, NetworkingManagerDelegate {
         NetworkingManager.sharedManager.downloadItems()
     }
     
+    deinit {
+        debugPrint("TableView Deinit")
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemModels.count
     }

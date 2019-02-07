@@ -31,6 +31,13 @@ class DetailsViewController: UIViewController, NetworkingManagerDelegate {
         NetworkingManager.sharedManager.downloadItemWithID("1")
     }
     
+    deinit {
+        debugPrint("Details VC deinit")
+    }
+    
+    @IBAction func popAction(_ sender: Any) {
+         navigationController?.popViewController(animated: true)
+    }
     func downloadedItems(_ items: [ItemModel]) {
         
     }

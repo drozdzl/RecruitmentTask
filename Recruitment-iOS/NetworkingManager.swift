@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NetworkingManagerDelegate {
+protocol NetworkingManagerDelegate: class {
     
     func downloadedItems(_ items:[ItemModel])
     func downloadedItemDetails(_ itemDetails:ItemDetailsModel)
@@ -16,15 +16,21 @@ protocol NetworkingManagerDelegate {
 }
 
 class NetworkingManager: NSObject {
-
-    static var sharedManager = NetworkingManager()
     
-    var delegate:NetworkingManagerDelegate?
+    static var sharedManager = NetworkingManager()
+    private override init() {}
+    weak var delegate: NetworkingManagerDelegate?
+    
+    typealias ItemsJsonCompletion = (() -> ([Item]))
+    typealias JSON = [String: Any]
+    
     
     func downloadItems() {
         request(filename: "Items.json") { dictionary in
             let data = dictionary["data"]
-            let array = data as! Array<Dictionary<String, AnyObject>>
+             let array = data as! Array<Dictionary<String, AnyObject>>
+            let completion = self.decodableObject([Item].self, fromJson: array)
+            
             var result:[ItemModel] = []
             for item in array {
                 let name = item["attributes"]?["name"] as? String
@@ -50,6 +56,10 @@ class NetworkingManager: NSObject {
         request(filename: filename) { dictionary in
             let data = dictionary["data"]
             let attributes = data!["attributes"]! as! Dictionary<String, AnyObject>
+            let dataDict = data as! Dictionary<String, AnyObject>
+          
+            let completion = self.decodableObject(ItemDetails.self, fromJson: dataDict)
+            print(completion)
             let name = attributes["name"] as? String
             let colorString = attributes["color"] as? String
             var color:UIColor?
