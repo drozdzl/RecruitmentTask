@@ -44,7 +44,9 @@
 		578CA34A220CABC800029186 /* ItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CA349220CABC800029186 /* ItemProtocol.swift */; };
 		578CA34C220CABDB00029186 /* ItemDetailProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CA34B220CABDB00029186 /* ItemDetailProtocol.swift */; };
 		578CA34E220CAC5400029186 /* ItemDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CA34D220CAC5400029186 /* ItemDetails.swift */; };
-		578CA351220CD24E00029186 /* NetworkingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CA350220CD24E00029186 /* NetworkingExtension.swift */; };
+		578CA355220D6C7D00029186 /* ItemsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CA353220D6C7D00029186 /* ItemsTableViewCell.swift */; };
+		578CA356220D6C7D00029186 /* ItemsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 578CA354220D6C7D00029186 /* ItemsTableViewCell.xib */; };
+		578CA359220D6FFD00029186 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578CA358220D6FFD00029186 /* TableViewDataSource.swift */; };
 		A4802C381D8ACB320032AF25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4802C321D8ACB320032AF25 /* AppDelegate.swift */; };
 		A4802C391D8ACB320032AF25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A4802C331D8ACB320032AF25 /* Main.storyboard */; };
 		A4802C3A1D8ACB320032AF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4802C341D8ACB320032AF25 /* Assets.xcassets */; };
@@ -103,7 +105,9 @@
 		578CA349220CABC800029186 /* ItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemProtocol.swift; sourceTree = "<group>"; };
 		578CA34B220CABDB00029186 /* ItemDetailProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailProtocol.swift; sourceTree = "<group>"; };
 		578CA34D220CAC5400029186 /* ItemDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetails.swift; sourceTree = "<group>"; };
-		578CA350220CD24E00029186 /* NetworkingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingExtension.swift; sourceTree = "<group>"; };
+		578CA353220D6C7D00029186 /* ItemsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsTableViewCell.swift; sourceTree = "<group>"; };
+		578CA354220D6C7D00029186 /* ItemsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemsTableViewCell.xib; sourceTree = "<group>"; };
+		578CA358220D6FFD00029186 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		5E85AB41FAD8718DCB5CD66E /* Pods-Recruitment-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recruitment-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recruitment-iOS/Pods-Recruitment-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A4802C1B1D8ACA5F0032AF25 /* Recruitment-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Recruitment-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4802C2A1D8ACA5F0032AF25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 		578CA30D220CA2CB00029186 /* ItemsTableView */ = {
 			isa = PBXGroup;
 			children = (
+				578CA357220D6FD700029186 /* TableViewDataProvider */,
+				578CA352220D6C6600029186 /* Cells */,
 				578CA30E220CA2FC00029186 /* ItemTableViewPresenter.swift */,
 				578CA30F220CA2FC00029186 /* ItemTableViewWorker.swift */,
 				578CA310220CA2FC00029186 /* ItemTableViewRouter.swift */,
@@ -245,9 +251,25 @@
 		578CA34F220CD23300029186 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				578CA350220CD24E00029186 /* NetworkingExtension.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		578CA352220D6C6600029186 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				578CA353220D6C7D00029186 /* ItemsTableViewCell.swift */,
+				578CA354220D6C7D00029186 /* ItemsTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		578CA357220D6FD700029186 /* TableViewDataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				578CA358220D6FFD00029186 /* TableViewDataSource.swift */,
+			);
+			name = TableViewDataProvider;
 			sourceTree = "<group>";
 		};
 		86510F760B8AAA10134216AA /* Pods */ = {
@@ -401,6 +423,7 @@
 				A4802C4A1D8ACB7B0032AF25 /* Item4.json in Resources */,
 				A4802C4B1D8ACB7B0032AF25 /* Item5.json in Resources */,
 				578CA32D220CA3BE00029186 /* Start.storyboard in Resources */,
+				578CA356220D6C7D00029186 /* ItemsTableViewCell.xib in Resources */,
 				578CA331220CA3FA00029186 /* TableViewItems.storyboard in Resources */,
 				A4802C3A1D8ACB320032AF25 /* Assets.xcassets in Resources */,
 				A4802C391D8ACB320032AF25 /* Main.storyboard in Resources */,
@@ -441,11 +464,13 @@
 				A4802C381D8ACB320032AF25 /* AppDelegate.swift in Sources */,
 				578CA318220CA2FC00029186 /* ItemTableViewModels.swift in Sources */,
 				578CA323220CA35D00029186 /* ItemDetailsPresenter.swift in Sources */,
+				578CA355220D6C7D00029186 /* ItemsTableViewCell.swift in Sources */,
 				578CA324220CA35D00029186 /* ItemDetailsWorker.swift in Sources */,
 				578CA2F7220CA0B800029186 /* StartWorker.swift in Sources */,
 				578CA315220CA2FC00029186 /* ItemTableViewPresenter.swift in Sources */,
 				578CA34C220CABDB00029186 /* ItemDetailProtocol.swift in Sources */,
 				578CA33F220CA63C00029186 /* ItemsCollectionModels.swift in Sources */,
+				578CA359220D6FFD00029186 /* TableViewDataSource.swift in Sources */,
 				578CA341220CA63C00029186 /* ItemsCollectionInteractor.swift in Sources */,
 				A4802C511D8ACB840032AF25 /* JSONParser.swift in Sources */,
 				578CA2FC220CA0B800029186 /* StartConfigurator.swift in Sources */,
@@ -455,7 +480,6 @@
 				578CA34E220CAC5400029186 /* ItemDetails.swift in Sources */,
 				578CA31B220CA2FC00029186 /* ItemTableViewConfigurator.swift in Sources */,
 				578CA2FA220CA0B800029186 /* StartViewController.swift in Sources */,
-				578CA351220CD24E00029186 /* NetworkingExtension.swift in Sources */,
 				A4802C521D8ACB840032AF25 /* NetworkingManager.swift in Sources */,
 				578CA2F8220CA0B800029186 /* StartRouter.swift in Sources */,
 				A4802C531D8ACB840032AF25 /* ItemDetailsModel.swift in Sources */,

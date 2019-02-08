@@ -9,27 +9,42 @@
 import UIKit
 
 protocol NetworkingManagerDelegate: class {
-    
     func downloadedItems(_ items:[ItemModel])
     func downloadedItemDetails(_ itemDetails:ItemDetailsModel)
-    
 }
+
+typealias ItemsJsonCompletion<T> = ([T]?, Error?) -> Void
+typealias ItemDetailCompletion<T> = (T?, Error?) -> Void
 
 class NetworkingManager: NSObject {
     
     static var sharedManager = NetworkingManager()
     private override init() {}
     weak var delegate: NetworkingManagerDelegate?
+
+    func downloadItems<T: Decodable>(type: T.Type, forFileName name: String, completion: @escaping ItemsJsonCompletion<T>){
+        request(filename: "\(name).json") { (dictionary) in
+            let data = dictionary["data"]
+            let array = data as! Array<Dictionary<String, AnyObject>>
+            let result = self.decodableObject([T].self, fromJson: array)
+            completion(result.items, result.error)
+        }
+    }
     
-    typealias ItemsJsonCompletion = (() -> ([Item]))
-    typealias JSON = [String: Any]
-    
+    func downloadItemDetail<T: Decodable>(forId id: String, completion: @escaping ItemDetailCompletion<T>) {
+        let filename = "Item\(id).json"
+        request(filename: filename) { (dictionary) in
+            let data = dictionary["data"] as! Dictionary<String, AnyObject>
+            let result = self.decodableObject(T.self, fromJson: data)
+            completion(result.itemDetail, result.error)
+        }
+    }
     
     func downloadItems() {
         request(filename: "Items.json") { dictionary in
             let data = dictionary["data"]
              let array = data as! Array<Dictionary<String, AnyObject>>
-            let completion = self.decodableObject([Item].self, fromJson: array)
+           
             
             var result:[ItemModel] = []
             for item in array {
@@ -56,10 +71,8 @@ class NetworkingManager: NSObject {
         request(filename: filename) { dictionary in
             let data = dictionary["data"]
             let attributes = data!["attributes"]! as! Dictionary<String, AnyObject>
-            let dataDict = data as! Dictionary<String, AnyObject>
           
-            let completion = self.decodableObject(ItemDetails.self, fromJson: dataDict)
-            print(completion)
+          
             let name = attributes["name"] as? String
             let colorString = attributes["color"] as? String
             var color:UIColor?
@@ -84,6 +97,39 @@ class NetworkingManager: NSObject {
             } else {
                 completionBlock([:])
             }
+        }
+    }
+    
+}
+
+
+extension NetworkingManager {
+    
+    fileprivate func decodableObject<T: Decodable>(_ object: T.Type, fromJson jsonArray: [Dictionary<String, AnyObject>]) -> (items: T?, error: Error?) {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonArray, options: .prettyPrinted)
+            return decode(toObject: object, from: jsonData)
+        } catch {
+            return (nil, error)
+        }
+    }
+    
+    fileprivate func decodableObject<T: Decodable>(_ object: T.Type, fromJson json: [String: Any]) -> (itemDetail: T?, error: Error?) {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+            return decode(toObject: object, from: jsonData)
+        } catch {
+            return (nil, error)
+        }
+    }
+    
+    private func decode<T: Decodable>(toObject object: T.Type, from data: Data) ->  (T?, Error?) {
+        do {
+            let value = try JSONDecoder().decode(T.self, from: data)
+            print(value)
+            return (value, nil)
+        } catch {
+            return (nil, error)
         }
     }
     

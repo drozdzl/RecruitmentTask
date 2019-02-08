@@ -1,6 +1,8 @@
 import UIKit
 
 protocol ItemDetailsDisplayLogic: class {
+    func displayItemDetails(_ item: ItemDetails)
+    func displayError(_ error: String)
 }
 
 class ItemDetailsViewController: UIViewController, ItemDetailsDisplayLogic {
@@ -38,4 +40,12 @@ class ItemDetailsViewController: UIViewController, ItemDetailsDisplayLogic {
     // MARK: Event handling
 
     // MARK: Presenter methods
+    
+    func displayError(_ error: String) {
+        
+    }
+    
+    func displayItemDetails(_ item: ItemDetails) {
+        
+    }
 }

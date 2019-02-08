@@ -2,9 +2,9 @@ import UIKit
 
 class ItemTableViewWorker {
     
-    typealias ItemsCompletion = (()-> [Item])
-    
-    func fetchItemsFromLocalStorage(completion: @escaping ItemsCompletion) {
-        NetworkingManager.sharedManager.downloadItems()
+    func fetchItemsFromLocalStorage(completion: @escaping ItemsJsonCompletion<Item>) {
+        NetworkingManager.sharedManager.downloadItems(type: Item.self, forFileName: "Items") { (items, error) in
+            completion(items,error)
+        }
     }
 }
