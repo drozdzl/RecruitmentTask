@@ -12,6 +12,7 @@ class ItemTableViewViewController: UIViewController, ItemTableViewDisplayLogic {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var tableViewDataSource: TableViewDataSource!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     // MARK: Properties
     
     var interactor: ItemTableViewBusinessLogic?
@@ -35,12 +36,14 @@ class ItemTableViewViewController: UIViewController, ItemTableViewDisplayLogic {
         super.viewDidLoad()
         registerCells()
         setupView()
+        tableViewDataSource.delegate = self
+        interactor?.fetchItems()
     }
 
     // MARK: View customization
 
     fileprivate func setupView() {
-        
+        activityIndicator.startAnimating()
     }
 
     // MARK: Event handling
@@ -48,17 +51,25 @@ class ItemTableViewViewController: UIViewController, ItemTableViewDisplayLogic {
     // MARK: Presenter methods
     
     func displayItems(_ items: [Item]) {
-        tableViewDataSource = TableViewDataSource(items: items)
+        tableViewDataSource.items = items
+        activityIndicator.stopAnimating()
         tableView.reloadData()
     }
     
     func displayError(_ error: String) {
-        
+        activityIndicator.stopAnimating()
     }
 }
 
 extension ItemTableViewViewController {
     fileprivate func registerCells() {
-        tableView.register(ItemsTableViewCell.self, forCellReuseIdentifier: ItemsTableViewCell.cellId)
+        let itemNIb = UINib(nibName: ItemsTableViewCell.cellId, bundle: nil)
+        tableView.register(itemNIb, forCellReuseIdentifier: ItemsTableViewCell.cellId)
+    }
+}
+
+extension ItemTableViewViewController: ItemListDelegate {
+    func didSelectItem(_ item: Item) {
+        router?.navigateToItemDetails(withItem: item)
     }
 }

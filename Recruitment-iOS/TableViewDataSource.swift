@@ -8,17 +8,23 @@
 
 import UIKit
 
-class TableViewDataSource: NSObject, UITableViewDataSource {
+protocol ItemListDelegate: class {
+    func didSelectItem(_ item: Item)
+}
+
+class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     
-    var items: [Item]
+    var items: [Item] = []
     
-    init(items: [Item]) {
-        self.items = items
+    weak var delegate: ItemListDelegate?
+    
+    override init() {
+        super.init()
     }
     
-    // MARK: TableViewDataSource 
+    // MARK: TableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
@@ -31,7 +37,12 @@ class TableViewDataSource: NSObject, UITableViewDataSource {
         cell.item = item
         
         return cell
-        
+    }
+    
+    // MARK: TableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectItem(items[indexPath.row])
     }
     
     

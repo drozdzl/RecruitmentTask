@@ -9,6 +9,7 @@
 import UIKit
 
 struct Item: ItemProtocol {
+    let id: String
     let name: String
     let preview: String?
     let colorsEnum: Colors
@@ -16,6 +17,7 @@ struct Item: ItemProtocol {
 
 extension Item: Decodable {
     enum CodingKeys: String, CodingKey  {
+        case id
         case attributes
     }
     enum AttributesKeys: String, CodingKey {
@@ -28,6 +30,7 @@ extension Item: Decodable {
         let generalValues = try decoder.container(keyedBy: CodingKeys.self)
         let attributeValues = try generalValues.nestedContainer(keyedBy: AttributesKeys.self, forKey: .attributes)
         
+        id = try generalValues.decode(String.self, forKey: .id)
         name = try attributeValues.decode(String.self, forKey: .name)
         preview = try? attributeValues.decode(String.self, forKey: .preview)
         colorsEnum = try attributeValues.decode(Colors.self, forKey: .color)

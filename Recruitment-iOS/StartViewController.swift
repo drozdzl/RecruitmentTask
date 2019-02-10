@@ -36,6 +36,9 @@ class StartViewController: UIViewController, StartDisplayLogic {
     }
 
     // MARK: Event handling
-
+    @IBAction func startAction(_ sender: Any) {
+        router?.navigateToApp()
+    }
+    
     // MARK: Presenter methods
 }

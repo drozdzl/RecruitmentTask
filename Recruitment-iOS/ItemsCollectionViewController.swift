@@ -1,12 +1,17 @@
 import UIKit
 
 protocol ItemsCollectionDisplayLogic: class {
+    func displayItems(_ items: [Item])
+    func displayError(_ error: String)
 }
 
 class ItemsCollectionViewController: UIViewController, ItemsCollectionDisplayLogic {
 
     // MARK: Outlets
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet var collectionViewDataStore: CollectionViewDataSource!
     // MARK: Properties
     var interactor: ItemsCollectionBusinessLogic?
     var router: ItemsCollectionRouter?
@@ -27,15 +32,35 @@ class ItemsCollectionViewController: UIViewController, ItemsCollectionDisplayLog
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerNibs()
         setupView()
+        interactor?.fetchItems()
     }
 
     // MARK: View customization
 
     fileprivate func setupView() {
+        activityIndicator.startAnimating()
     }
 
     // MARK: Event handling
 
     // MARK: Presenter methods
+    
+    func displayError(_ error: String) {
+        activityIndicator.stopAnimating()
+    }
+    
+    func displayItems(_ items: [Item]) {
+        collectionViewDataStore.items = items
+        activityIndicator.stopAnimating()
+        collectionView.reloadData()
+    }
+}
+
+extension ItemsCollectionViewController {
+    fileprivate func registerNibs() {
+        let cell = UINib.init(nibName: ItemCollectionViewCell.cellId, bundle: nil)
+        collectionView.register(cell, forCellWithReuseIdentifier: ItemCollectionViewCell.cellId)
+    }
 }

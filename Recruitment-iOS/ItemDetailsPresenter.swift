@@ -2,7 +2,8 @@ import UIKit
 
 protocol ItemDetailsPresentationLogic {
     func presentItemDetails(_ item: ItemDetails)
-    func presentError(_ error: Error)
+    func presentError(_ error: RMError)
+    func presentchangedBackgroundColor(_ color: UIColor)
 }
 
 class ItemDetailsPresenter: ItemDetailsPresentationLogic {
@@ -14,8 +15,12 @@ class ItemDetailsPresenter: ItemDetailsPresentationLogic {
         viewController?.displayItemDetails(item)
     }
     
-    func presentError(_ error: Error) {
+    func presentError(_ error: RMError) {
         viewController?.displayError(error.localizedDescription)
+    }
+    
+    func presentchangedBackgroundColor(_ color: UIColor) {
+        viewController?.displayChangedBackgroundColor(color)
     }
 	
 }

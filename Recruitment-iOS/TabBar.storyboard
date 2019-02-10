@@ -13,6 +13,7 @@
         <scene sceneID="K5g-Gc-mwz">
             <objects>
                 <tabBarController id="gDA-Jf-wyo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hB0-yY-Xq8"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="vCF-4X-JPm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,21 +28,21 @@
             </objects>
             <point key="canvasLocation" x="970" y="616"/>
         </scene>
-        <!--TableViewItems-->
+        <!--TableView-->
         <scene sceneID="U4w-Jz-W94">
             <objects>
-                <viewControllerPlaceholder storyboardName="TableViewItems" id="Dni-xy-kkY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="TableViewItems" id="r8g-qB-YoR"/>
+                <viewControllerPlaceholder storyboardName="TableView" id="Dni-xy-kkY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="TableView" id="r8g-qB-YoR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd3-fU-a6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1566" y="441"/>
         </scene>
-        <!--CollectionViewItems-->
+        <!--CollectionView-->
         <scene sceneID="Wcd-Gf-sug">
             <objects>
-                <viewControllerPlaceholder storyboardName="CollectionViewItems" id="VSP-ZZ-dxe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="CollectionViewItems" id="QjG-OA-8rg"/>
+                <viewControllerPlaceholder storyboardName="CollectionView" id="VSP-ZZ-dxe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="CollectionView" id="QjG-OA-8rg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QqP-Z2-4fJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

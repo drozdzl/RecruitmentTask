@@ -8,16 +8,20 @@
 
 import UIKit
 
-protocol RercuitmentCell {
+protocol RecruitmentCell {
     static var cellId: String { get }
 }
 
-class ItemsTableViewCell: UITableViewCell, RercuitmentCell {
+class ItemsTableViewCell: UITableViewCell, RecruitmentCell {
     
     //MARK: Outlets
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var previewLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
     //MARK: Properties
     

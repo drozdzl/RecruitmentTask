@@ -3,14 +3,16 @@ import UIKit
 protocol ItemDetailsDisplayLogic: class {
     func displayItemDetails(_ item: ItemDetails)
     func displayError(_ error: String)
+    func displayChangedBackgroundColor(_ color: UIColor)
 }
 
 class ItemDetailsViewController: UIViewController, ItemDetailsDisplayLogic {
 
     // MARK: Outlets
-
+    @IBOutlet weak var textView: UITextView!
+    
     // MARK: Properties
-    var interactor: ItemDetailsBusinessLogic?
+    var interactor: (ItemDetailsBusinessLogic & ItemDataStore)?
     var router: ItemDetailsRouter?
 
     // MARK: Object lifecycle
@@ -30,11 +32,14 @@ class ItemDetailsViewController: UIViewController, ItemDetailsDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        interactor?.fetchItemDetails()
     }
 
     // MARK: View customization
 
     fileprivate func setupView() {
+        interactor?.changeBackgroundColor()
+        title = interactor?.item?.name.changedTitle
     }
 
     // MARK: Event handling
@@ -46,6 +51,11 @@ class ItemDetailsViewController: UIViewController, ItemDetailsDisplayLogic {
     }
     
     func displayItemDetails(_ item: ItemDetails) {
+        textView.text = item.description
         
+    }
+    
+    func displayChangedBackgroundColor(_ color: UIColor) {
+        self.view.backgroundColor = color
     }
 }

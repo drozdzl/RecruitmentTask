@@ -8,7 +8,8 @@
 
 import Foundation
 
-protocol ItemProtocol: Decodable {
+protocol ItemProtocol {
+    var id: String { get }
     var name: String { get }
     var preview: String? { get }
     var colorsEnum: Colors { get }
