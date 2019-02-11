@@ -28,7 +28,7 @@ class NetworkingManager: NSObject {
         }
     }
     
-    func downloadItemDetail<T: Decodable>(forId id: String, completion: @escaping ItemDetailCompletion<T>) {
+    func downloadItemDetail<T: Decodable>(type: T.Type, forId id: String, completion: @escaping ItemDetailCompletion<T>) {
         let filename = "Item\(id).json"
         request(filename: filename) { (dictionary) in
             guard let data = dictionary["data"] as? Dictionary<String, AnyObject> else {
