@@ -6,5 +6,6 @@ target 'Recruitment-iOS' do
   use_frameworks!
 
   # Pods for Recruitment-iOS
+  pod 'SVProgressHUD-0.8.1'
 
 end

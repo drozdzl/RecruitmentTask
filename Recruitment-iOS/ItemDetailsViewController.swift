@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD_0_8_1
 
 protocol ItemDetailsDisplayLogic: class {
     func displayItemDetails(_ item: ItemDetails)
@@ -47,7 +48,7 @@ class ItemDetailsViewController: UIViewController, ItemDetailsDisplayLogic {
     // MARK: Presenter methods
     
     func displayError(_ error: String) {
-        
+        SVProgressHUD.showError(withStatus: error)
     }
     
     func displayItemDetails(_ item: ItemDetails) {

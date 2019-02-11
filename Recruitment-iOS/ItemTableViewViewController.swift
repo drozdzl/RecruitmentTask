@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD_0_8_1
 
 protocol ItemTableViewDisplayLogic: class {
     func displayItems(_ items: [Item])
@@ -58,6 +59,7 @@ class ItemTableViewViewController: UIViewController, ItemTableViewDisplayLogic {
     
     func displayError(_ error: String) {
         activityIndicator.stopAnimating()
+        SVProgressHUD.showError(withStatus: error)
     }
 }
 

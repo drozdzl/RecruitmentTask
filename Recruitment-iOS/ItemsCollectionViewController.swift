@@ -1,4 +1,5 @@
 import UIKit
+import SVProgressHUD_0_8_1
 
 protocol ItemsCollectionDisplayLogic: class {
     func displayItems(_ items: [Item])
@@ -49,6 +50,7 @@ class ItemsCollectionViewController: UIViewController, ItemsCollectionDisplayLog
     
     func displayError(_ error: String) {
         activityIndicator.stopAnimating()
+        SVProgressHUD.showError(withStatus: error)
     }
     
     func displayItems(_ items: [Item]) {

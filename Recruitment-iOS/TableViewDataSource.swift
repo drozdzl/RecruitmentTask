@@ -44,6 +44,4 @@ class TableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectItem(items[indexPath.row])
     }
-    
-    
 }

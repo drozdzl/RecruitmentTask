@@ -444,6 +444,7 @@
 				A4802C171D8ACA5F0032AF25 /* Sources */,
 				A4802C181D8ACA5F0032AF25 /* Frameworks */,
 				A4802C191D8ACA5F0032AF25 /* Resources */,
+				752D46A615EB0131BF1BE70C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -527,6 +528,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		752D46A615EB0131BF1BE70C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Recruitment-iOS/Pods-Recruitment-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD-0.8.1/SVProgressHUD_0_8_1.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD_0_8_1.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Recruitment-iOS/Pods-Recruitment-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9A38F6936B58E3C13D2C3607 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
